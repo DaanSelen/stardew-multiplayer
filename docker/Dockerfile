@@ -17,11 +17,9 @@ RUN apt-get update \
     && mkdir -p /ephemerality
 
 # DOTNET SDK
-RUN curl -L -o ./packages-microsoft-prod.deb https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb \
-    && dpkg -i packages-microsoft-prod.deb \
-    && rm packages-microsoft-prod.deb \
-    && apt-get update \
-    && apt-get install -y dotnet-sdk-9.0
+RUN curl -o /tmp/dotnet-install.sh https://raw.githubusercontent.com/dotnet/install-scripts/refs/heads/main/src/dotnet-install.sh \
+    && bash /tmp/dotnet-install.sh --install-dir /usr/local/share/dotnet \
+    && echo "export PATH=$PATH:/usr/local/share/dotnet" >> /etc/profile
 
 RUN apt-get upgrade -y
 

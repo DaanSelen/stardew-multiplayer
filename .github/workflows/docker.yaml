@@ -44,13 +44,15 @@ jobs:
           file: ./docker/Dockerfile
           push: false
           tags: ${{ env.DOCKER_IMAGE }}:latest
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
 
       - name: Docker Scout
         id: docker-scout
         uses: docker/scout-action@v1
         with:
           command: cves
+          dockerhub-user: ${{ secrets.DOCKER_HUB_USERNAME }}
+          dockerhub-password: ${{ secrets.DOCKER_HUB_PASSWORD }}
           image: ${{ env.DOCKER_IMAGE }}:latest
           only-severities: critical,high,medium,low,unspecified
           github-token: ${{ secrets.GITHUB_TOKEN }}

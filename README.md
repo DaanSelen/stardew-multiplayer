@@ -41,4 +41,16 @@ volumes:
 ```
 This compose creates the image from the source code once you type `docker compose up -d` with the -d meaning detached (in the background).
 
-Kind regards.
+# CREDITS:
+
+(Always On Server For Multiplayer)[https://github.com/perkmi/Always-On-Server-for-Multiplayer]<br>
+(Automate)[https://www.nexusmods.com/stardewvalley/mods/1063]<br>
+(Auto Load Game)[https://www.nexusmods.com/stardewvalley/mods/2509]<br>
+(Default On Cheats)[https://www.nexusmods.com/stardewvalley/mods/21035]<br>
+(Multi-User Chests)[https://www.nexusmods.com/stardewvalley/mods/9856]
+(No Fence Decay Redux)[https://www.nexusmods.com/stardewvalley/mods/20802]
+(Non Destructive NPCs)[https://forums.stardewvalley.net/threads/unofficial-mod-updates.2096/page-132#post-121034]
+(Skip Intro)[https://www.nexusmods.com/stardewvalley/mods/533]
+(Unlimited Players)[https://www.nexusmods.com/stardewvalley/mods/2213]
+
+Kind Regards.

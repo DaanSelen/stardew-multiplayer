@@ -54,6 +54,7 @@ launch_stardew() {
 }
 
 ln -sv /config/autoload/config.json /data/stardewvalley/Mods/AutoLoadGame/config.json
+ln -sv /config/always_on_server/config.json /data/stardewvalley/Mods/Always\ On\ Server/config.json
 
 # Main script execution
 echo "Starting the Stardew Valley server instance for the first time..."

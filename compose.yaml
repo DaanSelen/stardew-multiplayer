@@ -1,16 +1,24 @@
 services:
   stardew:
     restart: unless-stopped
+    container_name: stardew-server
     build:
       context: .
       dockerfile: docker/Dockerfile
-    #image: stardew:latest
+#    image: stardew:latest
     ports:
-      - "3001:3001"
-    container_name: stardew
+      - "3001:3001/tcp"
+      - "24642:24642/udp"
     volumes:
-      - autoload:/config/autoload
+      - config:/config
       - saves:/config/.config/StardewValley/Saves
+#    deploy:
+#      resources:
+#        reservations:
+#          devices:
+#            - driver: nvidia
+#              count: 1
+#              capabilities: [gpu]
 volumes:
-  autoload:
+  config:
   saves:

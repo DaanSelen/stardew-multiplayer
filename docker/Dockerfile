@@ -41,13 +41,11 @@ RUN tar zxf /tmp/latest.tar.gz -C /data \
 # Copy predefined mods
 COPY ./mods /data/stardewvalley/Mods
 
-# Make the default i3 message go away for a clean startup.
-COPY ./scripts/configure-i3.sh /custom-cont-init.d/00-configure-i3.sh
-
 # Place the entrypoint which actually starts Stardew Valley!
 COPY ./docker/entrypoint.sh /custom-cont-init.d/99-entrypoint.sh
 
 # Copy assets
+COPY ./assets/configure-i3.sh /custom-cont-init.d/00-configure-i3.sh
 COPY ./assets/always_on_server_config.json /config/always_on_server/config.json
 
 VOLUME /config/autoload

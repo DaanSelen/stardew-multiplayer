@@ -45,8 +45,8 @@ tail_smapi() {
 # Function to launch Stardew Valley
 launch_stardew() {
   bash -c "sleep 5s \
-  && /data/stardewvalley/StardewValley" &
-  stardew_valley_pid=$!
+  && SYNC=0 strangle 8 /data/stardewvalley/StardewValley" &
+  #stardew_valley_pid=$!
 }
 
 if [[ ! -d /config/modconfs/autoload ]]; then
@@ -72,9 +72,7 @@ fi
 ln -sv /config/modconfs/autoload/config.json /data/stardewvalley/Mods/AutoLoadGame/config.json
 ln -sv /config/modconfs/always_on_server/config.json /data/stardewvalley/Mods/Always\ On\ Server/config.json
 
-# Main script execution
-echo "Starting the Stardew Valley server instance for the first time..."
-
+echo "Starting..."
 echo "Starting to follow the SMAPI logs..."
 tail_smapi &
 

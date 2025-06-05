@@ -45,7 +45,7 @@ tail_smapi() {
 # Function to launch Stardew Valley
 launch_stardew() {
   bash -c "sleep 5s \
-  && SYNC=0 strangle 8 /data/stardewvalley/StardewValley" &
+  && SYNC=0 strangle 6 /data/stardewvalley/StardewValley" &
   #stardew_valley_pid=$!
 }
 

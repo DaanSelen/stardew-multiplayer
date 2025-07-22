@@ -34,7 +34,7 @@ RUN curl -L -o /tmp/always_on_server.zip https://github.com/perkmi/Always-On-Ser
     && rm -rf /var/cache/*
 
 # Base image
-FROM linuxserver/webtop:debian-i3
+FROM linuxserver/webtop:debian-i3-version-4888b5cd
 
 RUN apt-get update \
     && apt-get install -y \

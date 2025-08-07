@@ -34,7 +34,7 @@ RUN curl -L -o /tmp/always_on_server.zip https://github.com/perkmi/Always-On-Ser
     && rm -rf /var/cache/*
 
 # Base image
-FROM linuxserver/webtop:debian-i3-version-4888b5cd
+FROM ghcr.io/linuxserver/baseimage-selkies:debiantrixie
 
 RUN apt-get update \
     && apt-get install -y \
@@ -63,7 +63,6 @@ COPY ./assets/MangoHud.conf /tmp/MangoHud.conf
 COPY ./mods /data/stardewvalley/Mods
 
 # Place the entrypoint which actually starts Stardew Valley! And other startup scripts
-COPY ./scripts/configure-i3.sh /custom-cont-init.d/00-configure-i3.sh
 COPY ./scripts/stardew.sh /custom-cont-init.d/10-stardew.sh
 COPY ./scripts/tail-smapi.sh /custom-cont-init.d/20-tail-smapi.sh
 
@@ -72,3 +71,6 @@ COPY ./assets/always_on_server_config.json /tmp/always_on_server_config.json
 COPY ./assets/autoload_config.json /tmp/autoload_config.json
 
 WORKDIR /data
+
+ENV TITLE="Stardew Valley Multiplayer Server" \
+  START_DOCKER=false

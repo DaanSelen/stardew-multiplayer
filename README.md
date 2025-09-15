@@ -16,6 +16,14 @@ Have fun!<br>
 
 For indication on how to package the game yourself look at this document: [Packaging Guide](./guides/packaging.md).
 
+# Where are the mods?
+
+If you can't find the mods in here, or not all the mods for a smooth server. Look at the following lines.
+
+Due to the permissions and rights, I am not allowed to give to you the mods directly from here, on Github.
+
+Therefor you have to download the mods according to: [Downloading Mods](./guides/mods.md)
+
 # Building the image:
 
 Once you clone this repository you can build the image using the following command:<br>

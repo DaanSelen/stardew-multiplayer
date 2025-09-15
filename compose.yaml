@@ -14,7 +14,7 @@ services:
       - PASSWORD=stardew
       - TITLE=Stardew Valley Game Server
     ports:
-      #- 3000:3000/tcp # Real VNC
+      - 3000:3000/tcp # Real VNC
       - 3001:3001/tcp # Web VNC
       - 24642:24642/udp # Stardew Valley Game Server
     volumes:

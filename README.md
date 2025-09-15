@@ -56,6 +56,13 @@ For GPU support refer to the following docs:<br>
 - https://docs.linuxserver.io/images/docker-webtop/#dri3-gpu-acceleration-kasmvnc-interface
 - https://docs.linuxserver.io/images/docker-webtop/#nvidia-gpu-support-kasmvnc-interface
 
+# Extra tips
+
+If you are having trouble with the low fps inside the VNC and can't get the world created - then:<br>
+Go to the assets folder and edit MongoHud.conf - change the `fps_limit` to something usable (or comment it out entirely).<br>
+After that rebuild the image, set up your world and then after you've done that and the AutoLoadGame mod has kicked in<br>
+Change it back to the low value to preserve the CPU utilization.
+
 # RESOURCE USAGE:
 
 ![image](https://github.com/user-attachments/assets/1491c0f4-0e5f-4368-a20f-3c2df26af1ba)

@@ -2,3 +2,9 @@ save*
 *.tar.gz
 conf*
 !*configure*
+
+# The mods I cannot directly present
+AutoLoadGame
+DefaultOnCheats
+Multi-UserChest
+NoFenceDecayRedux

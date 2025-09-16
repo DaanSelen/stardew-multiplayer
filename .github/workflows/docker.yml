@@ -1,4 +1,6 @@
 name: Docker Building
+permissions:
+  contents: read
 
 on:
   push:

@@ -9,6 +9,27 @@ But less-efficient code was also one of the factors.<br>
 
 Therefor this project, it tries to modernize the packages with the same functionality.
 
+# Overview:
+
+This container setup has a couple things to know. First off you need to get the game files yourself. I cannot legally present them here.<br>
+Furthermore you'll have to know that this server exposes at least 1 port, and at most 3 ports for a succesful server.<br>
+These are:
+
+```
+- 24642/udp # This is the Stardew Valley Server port
+- 3000/tcp  # This is the raw-VNC port. For remote connections
+- 3001/tcp  # This is the web-VNC port. For remote commections through a web-browser.
+```
+
+Steps to get it running:
+
+1. Package the game files.
+2. Build the container.
+3. Run the container.
+4. Go to the (web)-VNC port and access the server.
+5. Create a world and prepare for multiplayer.
+6. Once its done, you can join the server.
+
 # Getting the game files.
 
 Getting the game files is arguably the hardest part. I love this game, and I do recommend buying it for yourself.<br>
@@ -55,6 +76,42 @@ For GPU support refer to the following docs:<br>
 
 - https://docs.linuxserver.io/images/docker-webtop/#dri3-gpu-acceleration-kasmvnc-interface
 - https://docs.linuxserver.io/images/docker-webtop/#nvidia-gpu-support-kasmvnc-interface
+
+# How to set the server up for the first time:
+
+Once you get the container running, which you can check like this:
+
+```shell
+docker compose up -d # This will make it run
+docker ps            # This will show the running containers
+```
+
+```
+CONTAINER ID   IMAGE                         COMMAND                  CREATED         STATUS          PORTS                                                                                                    NAMES
+b3996663dd16   stardew-multiplayer-stardew   "/init"                  9 seconds ago   Up 8 seconds    3000/tcp, 0.0.0.0:3001->3001/tcp, [::]:3001->3001/tcp, 0.0.0.0:24642->24642/udp, [::]:24642->24642/udp   stardew-server
+```
+
+Once you see this, you can check the web-VNC (on port 3001/tcp):
+
+> The password is set inside the ENV variables of the container.
+
+This presents a login pop-up where you need to fill in those credentials.
+![image](./assets/login.png)
+
+Then you are on the main menu.
+![image](./assets/firstscreen.png)
+
+You have to create your world and once you are setup:
+![image](./assets/firstworld.png)
+
+Then the last thing you need to do is restart the docker container.
+```shell
+docker restart stardew-server # Or your server name
+```
+![image](./assets/done.png)
+
+And as seen above you have a couple rows displaying you are hosting a Multiplayer game!<br>
+Good luck.
 
 # Extra tips
 

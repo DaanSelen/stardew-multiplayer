@@ -1,3 +1,5 @@
+# Install Microsoft's DotNet for the game
+
 FROM alpine:latest AS dotnet-installer
 
 RUN apk add --no-cache \
@@ -5,10 +7,26 @@ RUN apk add --no-cache \
     && curl -o /tmp/dotnet-install.sh https://raw.githubusercontent.com/dotnet/install-scripts/refs/heads/main/src/dotnet-install.sh \
     && bash /tmp/dotnet-install.sh --install-dir /usr/local/share/dotnet
 
+# Download the Stardew Valley game files from Steam (bypasses self-packaging)
+
+FROM steamcmd/steamcmd:debian-trixie AS steam-downloader
+
+ARG STEAM_USER
+ARG STEAM_PASS
+
+RUN if [ -n "$STEAM_USER" ] && [ -n "$STEAM_PASS" ]; then \
+      echo "Trying to use Steam credentials!"; \
+      steamcmd +force_install_dir /tmp/stardew +login ${STEAM_USER} ${STEAM_PASS} +app_update 413150 +quit; \
+    else \
+      mkdir /tmp/stardew; \
+      echo "Steam username or Password not provided"; \
+    fi
+
 # Unpack Stardew Valley
 FROM debian:stable-slim AS unpacker
 # You'll need to supply your own Stardew Valley game files, in the followin name: 'latest.tar.gz' or change the following line.
 
+ARG METHOD="LOCAL"
 ARG SMAPI_VERSION="4.3.2"
 
 RUN apt-get update \
@@ -17,11 +35,23 @@ RUN apt-get update \
         unzip \
         libicu-dev
 
-COPY ./latest.tar.gz /tmp/latest.tar.gz
-RUN mkdir -p /game/nexus \
-    && tar zxf /tmp/latest.tar.gz -C /game \
-    && rm /tmp/latest.tar.gz \
-    && mv /game/Stardew\ Valley /game/stardewvalley
+### UNPACKER PROVIDE GAME FILES
+COPY ./latest.tar.gz /tmp/local-stardew.tar.gz
+COPY --from=steam-downloader /tmp/stardew /tmp/steam-stardew
+
+RUN mkdir -p /game/nexus; \
+    echo "METHOD: $METHOD"; \
+    if [ "$METHOD" = "LOCAL" ]; then \
+        tar -zxf /tmp/local-stardew.tar.gz -C /game; \
+        \
+        if [ -d "/game/Stardew Valley" ]; then \
+            echo "Renaming Stardew Valley folder."; \
+            mv -v "/game/Stardew Valley" "/game/stardewvalley"; \
+        fi; \
+    elif [ "$METHOD" = "STEAM" ]; then \
+        mv /tmp/steam-stardew /game/stardewvalley; \
+    fi; \
+    rm -rfv /tmp/*-stardew.*
 
 RUN curl -L -o /tmp/nexus.zip https://github.com/Pathoschild/SMAPI/releases/download/${SMAPI_VERSION}/SMAPI-${SMAPI_VERSION}-installer.zip \
     && unzip /tmp/nexus.zip -d /game/nexus \

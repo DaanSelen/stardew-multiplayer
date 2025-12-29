@@ -1,5 +1,5 @@
 save*
-*.tar.gz
+*.tar.gz*
 conf*
 !*configure*
 

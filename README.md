@@ -11,9 +11,14 @@ Therefor this project, it tries to modernize the packages with the same function
 
 # Overview:
 
+Just new! Steam downloading also supported now! Might be janky sometimes in terms of Steam Guard Authentication. But it works.<br>
+
 This container setup has a couple things to know. First off you need to get the game files yourself. I cannot legally present them here.<br>
 Furthermore you'll have to know that this server exposes at least 1 port, and at most 3 ports for a succesful server.<br>
 These are:
+
+For peace of mind, Chromium based browsers did perform the best for me.<br>
+Though I use Firefox for everything else.<br>
 
 ```
 - 24642/udp # This is the Stardew Valley Server port
@@ -23,17 +28,39 @@ These are:
 
 Steps to get it running:
 
-1. Package the game files.
+1. Package the game files. (Steam or Local)
 2. Build the container.
 3. Run the container.
 4. Go to the (web)-VNC port and access the server.
-5. Create a world and prepare for multiplayer.
+5. Create a world and prepare for multiplayer. (Be mindful you need the Autoload mod!)
 6. Once its done, you can join the server.
 
 # Getting the game files.
 
-Getting the game files is arguably the hardest part. I love this game, and I do recommend buying it for yourself.<br>
-Have fun!<br>
+Steam is now supported, so there are two methods. Local and Steam.
+
+Steam:
+
+For the Steam method, you need to have purchased the game on Steam and have your credentials ready.<br>
+In my case I also needed to have my authenticator mobile app ready to confirm.<br>
+
+When building just pass the following arguments:
+
+```sh
+--build-arg METHOD="STEAM"
+--build-arg STEAM_USER="<Your Steam Username>"
+--build-arg STEAM_PASS="<Your Steam Password>"
+```
+
+Alternatively you can also use/change the predefined fields inside the `./compose.yaml`<br>
+
+Be mindful that even though you are not supplying the game files locally, you still need to have an empty file present at `./latest.tar.gz`.<br>
+This is because the Dockerfile expects it to.
+
+Local:
+
+I love this game, and I do recommend buying it for yourself.<br>
+However if you are unable or unwilling to give Steam credentials, you can also use the packaging guide!<br>
 
 For indication on how to package the game yourself look at this document: [Packaging Guide](./guides/packaging.md).
 

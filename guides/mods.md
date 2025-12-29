@@ -13,7 +13,7 @@ Mods/ (folder)
   ..other mods
 ```
 
-## AutoLoadGame (Nexus Mods)
+## AutoLoadGame (Nexus Mods) HIGHLY RECOMMENDED
 
 The first mod, AutoLoadMods is needed for automatically loading the save game when the container is restarted.
 

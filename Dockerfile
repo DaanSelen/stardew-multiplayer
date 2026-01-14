@@ -27,7 +27,7 @@ FROM debian:stable-slim AS unpacker
 # You'll need to supply your own Stardew Valley game files, in the followin name: 'latest.tar.gz' or change the following line.
 
 ARG METHOD="LOCAL"
-ARG SMAPI_VERSION="4.3.2"
+ARG SMAPI_VERSION="4.4.0"
 
 RUN apt-get update \
     && apt-get install -y \

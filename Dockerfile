@@ -39,7 +39,9 @@ RUN apt-get update \
 COPY ./latest.tar.gz /tmp/local-stardew.tar.gz
 COPY --from=steam-downloader /tmp/stardew /tmp/steam-stardew
 
-RUN mkdir -p /game/nexus; \
+RUN METHOD="$(echo "$METHOD" | tr '[:lower:]' '[:upper:]')" && \
+    echo $METHOD; \
+    mkdir -p /game/nexus; \
     echo "METHOD: $METHOD"; \
     if [ "$METHOD" = "LOCAL" ]; then \
         tar -zxf /tmp/local-stardew.tar.gz -C /game; \

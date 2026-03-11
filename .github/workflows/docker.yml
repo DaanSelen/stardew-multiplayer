@@ -54,13 +54,13 @@ jobs:
           platforms: linux/amd64
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Docker Scout
-        id: docker-scout
-        if: ${{ github.event_name != 'pull_request' }}
-        uses: docker/scout-action@v1
-        with:
-          command: quickview, cves
-          image: local://${{ env.DOCKER_IMAGE }}:latest
-          ignore-unchanged: true
-          only-severities: critical,high
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Docker Scout
+#        id: docker-scout
+#        if: ${{ github.event_name != 'pull_request' }}
+#        uses: docker/scout-action@v1
+#        with:
+#          command: quickview, cves
+#          image: local://${{ env.DOCKER_IMAGE }}:latest
+#          ignore-unchanged: true
+#          only-severities: critical,high
+#          github-token: ${{ secrets.GITHUB_TOKEN }}

@@ -1,4 +1,4 @@
-[![Docker Building Status](https://github.com/DaanSelen/stardew-multiplayer/actions/workflows/docker.yml/badge.svg)](https://github.com/DaanSelen/stardew-multiplayer/actions/workflows/docker.yml)
+[![Docker Building](https://github.com/DaanSelen/stardew-multiplayer/actions/workflows/docker.yml/badge.svg)](https://github.com/DaanSelen/stardew-multiplayer/actions/workflows/docker.yml)
 [![CodeQL Advanced](https://github.com/DaanSelen/stardew-multiplayer/actions/workflows/codeql.yml/badge.svg)](https://github.com/DaanSelen/stardew-multiplayer/actions/workflows/codeql.yml)
 
 # Stardew Valley Multiplayer Server (Docker)
